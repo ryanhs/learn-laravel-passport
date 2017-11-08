@@ -1,0 +1,266 @@
+{
+	"info": {
+		"name": "Learn Laravel Passport",
+		"_postman_id": "9da56e1d-3fc6-8b63-4e55-5b3b6b2f8fda",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);",
+							"postman.setEnvironmentVariable(\"refresh_token\", jsonData.refresh_token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "{{admin_username}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{admin_password}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://passport.dev/oauth/token",
+					"protocol": "http",
+					"host": [
+						"passport",
+						"dev"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "refresh token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);",
+							"postman.setEnvironmentVariable(\"refresh_token\", jsonData.refresh_token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "{{refresh_token}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://passport.dev/oauth/token",
+					"protocol": "http",
+					"host": [
+						"passport",
+						"dev"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "api/user without token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://passport.dev/api/user",
+					"protocol": "http",
+					"host": [
+						"passport",
+						"dev"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "api/user with token",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access_token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "callBackUrl",
+							"type": "any"
+						},
+						{
+							"key": "authUrl",
+							"type": "any"
+						},
+						{
+							"key": "accessTokenUrl",
+							"type": "any"
+						},
+						{
+							"key": "clientId",
+							"type": "any"
+						},
+						{
+							"key": "clientSecret",
+							"type": "any"
+						},
+						{
+							"key": "clientAuth",
+							"type": "any"
+						},
+						{
+							"key": "grantType",
+							"type": "any"
+						},
+						{
+							"key": "scope",
+							"type": "any"
+						},
+						{
+							"key": "username",
+							"type": "any"
+						},
+						{
+							"key": "password",
+							"type": "any"
+						},
+						{
+							"key": "tokenType",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "redirectUri",
+							"type": "any"
+						},
+						{
+							"key": "refreshToken",
+							"type": "any"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://passport.dev/api/user",
+					"protocol": "http",
+					"host": [
+						"passport",
+						"dev"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
