@@ -18,3 +18,8 @@ Postman environment variables:
 - admin_password
 - access_token
 - refresh_token
+
+
+**notes:**
+
+* I forgot to make environment variable for base_url, default use `http://passport.dev` :-)
